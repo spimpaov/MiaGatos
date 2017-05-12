@@ -1,26 +1,36 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public enum color {
-    BLACK, WHITE, YELLOW
-}
+using UnityEngine.UI;
 
 public class Nota : MonoBehaviour {
-    
-    public color color;
+    public enum Cor {
+        BLACK, WHITE, YELLOW
+    }
+
+    public Cor cor;
     public float speed;
     private Rigidbody2D rb;
     private RectTransform rect;
+    private Image img;
 
     void Start () {
         rb = GetComponent<Rigidbody2D>();
         rect = GetComponent<RectTransform>();
         rb.velocity = new Vector2(speed, 0);
-	}
+        img = GetComponent<Image>();
+    }
 
     void Update() {
         deleteOnExit();
+        changeColor();
+    }
+
+    void changeColor() {
+        if (cor == Cor.BLACK) img.color = Color.black;
+        if (cor == Cor.WHITE) img.color = Color.white;
+        if (cor == Cor.YELLOW) img.color = Color.yellow;
+
     }
 
     void deleteOnExit() {

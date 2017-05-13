@@ -6,11 +6,11 @@ PlayerSettings:
   serializedVersion: 11
   productGUID: f407be96c73fb7f4ca664ac18eba4c8f
   AndroidProfiler: 0
-  defaultScreenOrientation: 4
+  defaultScreenOrientation: 0
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
-  companyName: DefaultCompany
+  companyName: GDP
   productName: MiaGatos
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}

@@ -94,8 +94,8 @@ public class IACat : MonoBehaviour {
 		//Debug.Log ("PLAY");
 		Vector3 target = brinquedo.GetComponent<Transform>().position; //direção entre o gato e o brinquedo
         while (!colidiuBrinquedo) {
-            if (raycastBrinquedo || raycastPote || raycastWall || raycastCat) yield break;
-            raycast(target.normalized, Color.blue);
+            if (raycastPote || raycastWall || raycastCat) yield break;
+            raycast((target - this.transform.position).normalized, Color.blue);
             transform.position = Vector3.MoveTowards(transform.position, target, velocity * Time.deltaTime);
             yield return new WaitForFixedUpdate();
         }
@@ -105,8 +105,8 @@ public class IACat : MonoBehaviour {
 		//Debug.Log ("EAT");
 		Vector3 target = poteDeComida.GetComponent<Transform>().position; //direção entre o gato e o pote
         while (!colidiuPote) {
-            if (raycastBrinquedo || raycastPote || raycastWall || raycastCat) yield break;
-            raycast(target.normalized, Color.green);
+            if (raycastBrinquedo || raycastWall || raycastCat) yield break;
+            raycast((target - this.transform.position).normalized, Color.green);
             transform.position = Vector3.MoveTowards(transform.position, target, velocity * Time.deltaTime);
             yield return new WaitForFixedUpdate();
         }

@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Gato
+  - Wall
+  - PoteDeComida
+  - Brinquedo
   layers:
   - Default
   - TransparentFX
@@ -14,10 +17,10 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
+  - Brinquedo
+  - PoteDeComida
+  - Wall
+  - Gato
   - 
   - 
   - 

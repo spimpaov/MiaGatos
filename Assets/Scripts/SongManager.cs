@@ -8,14 +8,20 @@ public class SongManager : MonoBehaviour {
     public GameObject nota;
     public RectTransform notaPos;
 
+    private static int count = 0;
+
+	void Start () {
+        StartCoroutine(spawnNotas());
+    }
+
     IEnumerator spawnNotas() {
         while (true) {
-            spawnNota((Nota.Cor) Random.Range(0, 3));
-            yield return new WaitForSeconds(1f);
+            spawnNota((Cor) Random.Range(0, 3));
+            yield return new WaitForSeconds(3f);
         }
     }
 
-    void spawnNota(Nota.Cor c) {
+    void spawnNota(Cor c) {
         var go = Instantiate(nota) as GameObject;
         RectTransform rt = go.GetComponent<RectTransform>();
         go.transform.SetParent(notaLinha.transform, true);
@@ -24,17 +30,7 @@ public class SongManager : MonoBehaviour {
         rt.anchoredPosition = notaPos.anchoredPosition;
         rt.sizeDelta = notaPos.sizeDelta;
         go.GetComponent<Nota>().cor = c;
-
-    }
-
-	// Use this for initialization
-	void Start () {
-        StartCoroutine(spawnNotas());
-
-    }
-	
-	// Update is called once per frame
-	void Update ()
-    {
+        go.GetComponent<Nota>().setID(count);
+        count++;
     }
 }

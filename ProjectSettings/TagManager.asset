@@ -8,6 +8,7 @@ TagManager:
   - Wall
   - PoteDeComida
   - Brinquedo
+  - HitFrame
   layers:
   - Default
   - TransparentFX

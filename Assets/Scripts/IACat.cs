@@ -6,11 +6,11 @@ public enum CatActions {
 	LICK, WALK, RUN, EAT, PLAY
 };
 
-
 public class IACat : MonoBehaviour {
     
 	public float walkVelocity;
 	public float runVelocity;
+    public Cor cor;
 
     private GameObject brinquedo;
     private GameObject poteDeComida;

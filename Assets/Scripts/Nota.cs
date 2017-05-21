@@ -12,9 +12,9 @@ public class Nota : MonoBehaviour {
     public Cor cor;
     public float speed;
     private Rigidbody2D rb;
-    private RectTransform rect;
+    [HideInInspector]
+    public RectTransform rect;
     private Image img;
-    private int id;
 
     void Start()
     {
@@ -35,26 +35,17 @@ public class Nota : MonoBehaviour {
     void Update()
     {
         deleteOnExit();
-        changeColor();
         //Debug.Log(Mathf.Abs(transform.position.x - GameObject.FindGameObjectWithTag("HitFrame").transform.position.x));
         // ---- So pra saber onde ele ta
     }
 
-    void changeColor()
-    {
-        if (cor == Cor.BLACK) img.color = new Color(0.196f, 0.196f, 0.196f, 1f);
-        if (cor == Cor.WHITE) img.color = Color.white;
-        if (cor == Cor.YELLOW) img.color = new Color(0.906f, 0.788f, 0.306f, 1f);
-
-    }
-
     void deleteOnExit()
     {
-        // O *1.1f eh gambiarra;
+        // O 1.07f eh gambiarra;
         // preciso saber quando o sprite inteiro está depois da tela, mas so sei a posicao do meio dele
-        if (gameObject != null && rect.position.x > Screen.width * 1.1f) Destroy(gameObject);
+        if (gameObject != null && rect.position.x > Screen.width * 1.07f) {
+            GameObject.Find("HealthManager").GetComponent<HealthManager>().missNoteDamage();
+            Destroy(gameObject);
+        }
     }
-
-    public void setID(int ID) { this.id = ID; }
-    public int getID() { return this.id; }
 }

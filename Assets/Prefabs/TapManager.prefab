@@ -51,5 +51,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2b571625650f084a83a0461182d2280, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  intervaloPerfect: 10
-  intervaloGood: 20
+  intervaloPerfect: 20
+  intervaloGood: 40
+  explB: {fileID: 1604420261322152, guid: bd9c7207d4add5a40b82f110a9595dbf, type: 2}
+  explW: {fileID: 1597039625089212, guid: 199982e950fdc9d4a8d556ab78c987a2, type: 2}
+  explY: {fileID: 1461961112558746, guid: a5894baa12e8acb4599e80ac36d3ecab, type: 2}

@@ -136,7 +136,7 @@ PlayerSettings:
   protectGraphicsMemory: 0
   useHDRDisplay: 0
   applicationIdentifier:
-    Android: com.Company.ProductName
+    Android: com.GDP.MiaGatos
     Standalone: unity.GDP.MiaGatos
     Tizen: com.Company.ProductName
     iOS: com.Company.ProductName

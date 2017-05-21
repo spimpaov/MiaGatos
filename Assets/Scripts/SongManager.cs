@@ -6,7 +6,7 @@ public class SongManager : MonoBehaviour {
 
     private GameObject notaLinha;
     [SerializeField]
-    private GameObject nota;
+    private GameObject notaB, notaW, notaY;
     private RectTransform notaPos;
 
     private static int count = 0;
@@ -25,12 +25,15 @@ public class SongManager : MonoBehaviour {
     IEnumerator spawnNotas() {
         while (true) {
             spawnNota((Cor) Random.Range(0, 3));
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(Random.Range(.5f,2f));
         }
     }
 
     void spawnNota(Cor c) {
-        var go = Instantiate(nota) as GameObject;
+        GameObject go;
+        if (c == Cor.BLACK) go = Instantiate(notaB) as GameObject;
+        else if (c == Cor.WHITE) go = Instantiate(notaW) as GameObject;
+        else go = Instantiate(notaY) as GameObject;
         RectTransform rt = go.GetComponent<RectTransform>();
         Nota n = go.GetComponent<Nota>();
         go.transform.SetParent(notaLinha.transform, true);
@@ -39,7 +42,6 @@ public class SongManager : MonoBehaviour {
         rt.anchoredPosition = notaPos.anchoredPosition;
         rt.sizeDelta = notaPos.sizeDelta;
         n.cor = c;
-        n.setID(count);
 
         if (c == Cor.BLACK) NotasPretas.Add(n);
         else if (c == Cor.WHITE) NotasBrancas.Add(n);

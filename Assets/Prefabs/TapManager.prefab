@@ -51,9 +51,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2b571625650f084a83a0461182d2280, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  intervaloPerfect: 0
-  intervaloGood: 0
-  notas:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  intervaloPerfect: 10
+  intervaloGood: 20

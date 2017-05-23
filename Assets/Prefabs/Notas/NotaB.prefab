@@ -113,6 +113,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cor: 0
   speed: 5
+  rect: {fileID: 0}
 --- !u!114 &114386886121505662
 MonoBehaviour:
   m_ObjectHideFlags: 1

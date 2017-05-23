@@ -52,7 +52,7 @@ public class TapManager : MonoBehaviour {
 
         dist = Mathf.Abs(currNota.transform.position.x - HitFrame.transform.position.x);
 
-        if (dist <= intervaloPerfect)
+        if (dist <= intervaloPerfect * Screen.width / 100)
         {
             Debug.Log("Score: " + Score.PERFECT);
             hm.perfectHeal();
@@ -61,7 +61,7 @@ public class TapManager : MonoBehaviour {
             else if (cor == Cor.YELLOW) instantiateExplostion(explY, currNota.rect);
             if (currNota.gameObject != null) Destroy(currNota.gameObject);
         }
-        else if (dist <= intervaloGood)
+        else if (dist <= intervaloGood * Screen.width / 100)
         {
             Debug.Log("Score: " + Score.GOOD);
             hm.goodHeal();

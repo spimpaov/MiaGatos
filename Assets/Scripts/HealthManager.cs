@@ -9,7 +9,7 @@ public class HealthManager : MonoBehaviour {
     private Image healthBarL, healthBarR;
     private float healthMax = 100, health = 100;
     [SerializeField]
-    private int wrongDmg, missDmg, perfHeal, gdHeal;
+    private int passiveDmg, wrongDmg, missDmg, perfHeal, gdHeal;
     [SerializeField]
     private Color colorHigh, colorMed, colorLow;
 
@@ -23,6 +23,7 @@ public class HealthManager : MonoBehaviour {
         debugDamage();
         healthColor();
         healthSize();
+        health -= passiveDmg*Time.deltaTime;
     }
 
     void healthSize() {
@@ -37,19 +38,19 @@ public class HealthManager : MonoBehaviour {
     }
     
     public void wrongTapDamage() {
-        if (health > 0) health -= wrongDmg;
+        if (health > wrongDmg) health -= wrongDmg;
         else health = 0;
     }
     public void missNoteDamage() {
-        if (health > 0) health -= missDmg;
+        if (health > missDmg) health -= missDmg;
         else health = 0;
     }
     public void perfectHeal() {
-        if (health < healthMax) health += perfHeal;
+        if (health < healthMax-perfHeal) health += perfHeal;
         else health = healthMax;
     }
     public void goodHeal() {
-        if (health < healthMax) health += gdHeal;
+        if (health < healthMax-gdHeal) health += gdHeal;
         else health = healthMax;
     }
 

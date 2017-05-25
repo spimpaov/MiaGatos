@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public enum CatActions {
-	LICK, WALK, RUN, EAT, PLAY
+	WALK, RUN, EAT, PLAY
 };
 
 public class IACat : MonoBehaviour {
     
 	public float walkVelocity;
 	public float runVelocity;
-    public Cor cor;
+    //public Cor cor;
 
     private GameObject brinquedo;
     private GameObject poteDeComida;
@@ -37,9 +37,9 @@ public class IACat : MonoBehaviour {
 
 	IEnumerator doAction(CatActions chosenAction) {
 		switch (chosenAction) {
-		case CatActions.LICK:
-            yield return lickCat();
-            break;
+		//case CatActions.LICK:
+        //   yield return lickCat();
+        //   break;
 		case CatActions.WALK:
             yield return walkCat(walkVelocity);
             break;
@@ -60,25 +60,24 @@ public class IACat : MonoBehaviour {
 			break;
 		}
     }
-	//circle colliders pras cabeças dos gatos (pra evitar que dois gatos fiquem parados quando se cruzam pelo caminho)
-	//possivel problema: ainda podem ficar parados se seus centros estiverem alinhados, eu acho
 
-	IEnumerator lickCat() {
+	/*
+    IEnumerator lickCat() {
 		//Debug.Log ("LICK");
         //seta a animação de lick
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2f);
 	}
+    */
 	IEnumerator walkCat(float velocity) {
 		Vector3 aux = new Vector3 (Random.Range(-1,2), Random.Range(-1,2), 0).normalized; //escolhe um sentido aleatório
         Vector3 target = transform.position + aux*5;
-		//Debug.Log ("WALK/RUN, dir: " + aux);
-        //seta a animação de walk ou run (walk se velocity == walkVelocity e run se velocity == runVelocity)
         while (!colidiuWall) {
             raycast(aux, Color.red);
             if (this.transform.position == target || raycastBrinquedo || raycastPote || raycastWall || raycastCat) yield break;
             transform.position = Vector3.MoveTowards(transform.position, target, velocity * Time.deltaTime);
             yield return new WaitForFixedUpdate();
         }
+        //seta a animação de walk ou run (walk se velocity == walkVelocity e run se velocity == runVelocity)
     }
     void raycast(Vector3 vetor, Color cor)
     {
@@ -99,6 +98,7 @@ public class IACat : MonoBehaviour {
             transform.position = Vector3.MoveTowards(transform.position, target, velocity * Time.deltaTime);
             yield return new WaitForFixedUpdate();
         }
+        yield return new WaitForSeconds(1f);
         //seta a animação de play
     }
     IEnumerator eatCat(float velocity) {
@@ -110,6 +110,7 @@ public class IACat : MonoBehaviour {
             transform.position = Vector3.MoveTowards(transform.position, target, velocity * Time.deltaTime);
             yield return new WaitForFixedUpdate();
         }
+        yield return new WaitForSeconds(2f);
         //seta a animação de eat
     }
 

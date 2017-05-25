@@ -34,17 +34,17 @@ public class TapManager : MonoBehaviour {
         if (cor == Cor.BLACK) {
             if (sm.NotasPretas.Count == 0) { Debug.Log("errou! " + cor); hm.wrongTapDamage(); return; } //nota errada
             sm.NotasPretas.RemoveAll(item => item == null);
-            currNota = sm.NotasPretas[0];
+            if (sm.NotasPretas.Count > 0) currNota = sm.NotasPretas[0];
         }
         else if (cor == Cor.WHITE) {
             if (sm.NotasBrancas.Count == 0) { Debug.Log("errou! " + cor); hm.wrongTapDamage(); return; } //nota errada
             sm.NotasBrancas.RemoveAll(item => item == null);
-            currNota = sm.NotasBrancas[0];
+            if (sm.NotasBrancas.Count > 0) currNota = sm.NotasBrancas[0];
         }
         else if (cor == Cor.YELLOW) {
             if (sm.NotasAmarelas.Count == 0) { Debug.Log("errou! " + cor); hm.wrongTapDamage(); return; } //nota errada
             sm.NotasAmarelas.RemoveAll(item => item == null);
-            currNota = sm.NotasAmarelas[0];
+            if (sm.NotasAmarelas.Count > 0) currNota = sm.NotasAmarelas[0];
         }
         else return;
 

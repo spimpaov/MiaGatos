@@ -23,6 +23,8 @@ public class InterScene : MonoBehaviour {
 	}
 
     public void LoadLastLevel() {
-        LoadScene(PlayerPrefs.GetString("Level"));
+        string lastlevel = PlayerPrefs.GetString("Level");
+        PlayerPrefs.DeleteKey("Level");
+        LoadScene(lastlevel);
     }
 }

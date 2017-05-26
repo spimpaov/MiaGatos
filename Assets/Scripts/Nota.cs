@@ -11,7 +11,8 @@ public enum Cor
 public class Nota : MonoBehaviour {
     public Cor cor;
     public float speed;
-    private Rigidbody2D rb;
+    [HideInInspector]
+    public Rigidbody2D rb;
     [HideInInspector]
     public RectTransform rect;
     private Image img;

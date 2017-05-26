@@ -32,29 +32,28 @@ public class TapManager : MonoBehaviour {
         float dist;
         Cor cor = (Cor) c;
         if (cor == Cor.BLACK) {
-            if (sm.NotasPretas.Count == 0) { Debug.Log("errou! " + cor); hm.wrongTapDamage(); return; } //nota errada
+            if (sm.NotasPretas.Count == 0) { hm.wrongTapDamage(); return; } //nota errada
             sm.NotasPretas.RemoveAll(item => item == null);
             if (sm.NotasPretas.Count > 0) currNota = sm.NotasPretas[0];
         }
         else if (cor == Cor.WHITE) {
-            if (sm.NotasBrancas.Count == 0) { Debug.Log("errou! " + cor); hm.wrongTapDamage(); return; } //nota errada
+            if (sm.NotasBrancas.Count == 0) { hm.wrongTapDamage(); return; } //nota errada
             sm.NotasBrancas.RemoveAll(item => item == null);
             if (sm.NotasBrancas.Count > 0) currNota = sm.NotasBrancas[0];
         }
         else if (cor == Cor.YELLOW) {
-            if (sm.NotasAmarelas.Count == 0) { Debug.Log("errou! " + cor); hm.wrongTapDamage(); return; } //nota errada
+            if (sm.NotasAmarelas.Count == 0) { hm.wrongTapDamage(); return; } //nota errada
             sm.NotasAmarelas.RemoveAll(item => item == null);
             if (sm.NotasAmarelas.Count > 0) currNota = sm.NotasAmarelas[0];
         }
         else return;
 
-        if (currNota == null) { Debug.Log("errou! " + cor); hm.wrongTapDamage(); return; } //nota errada
+        if (currNota == null) { hm.wrongTapDamage(); return; } //nota errada
 
         dist = Mathf.Abs(currNota.transform.position.x - HitFrame.transform.position.x);
 
         if (dist <= intervaloPerfect * Screen.width / 100)
         {
-            Debug.Log("Score: " + Score.PERFECT);
             hm.perfectHeal();
             if (cor == Cor.BLACK) instantiateExplostion(explB, currNota.rect);
             else if (cor == Cor.WHITE) instantiateExplostion(explW, currNota.rect);
@@ -63,7 +62,6 @@ public class TapManager : MonoBehaviour {
         }
         else if (dist <= intervaloGood * Screen.width / 100)
         {
-            Debug.Log("Score: " + Score.GOOD);
             hm.goodHeal();
             if (cor == Cor.BLACK) instantiateExplostion(explB, currNota.rect);
             else if (cor == Cor.WHITE) instantiateExplostion(explW, currNota.rect);
@@ -71,7 +69,6 @@ public class TapManager : MonoBehaviour {
             if (currNota.gameObject != null) Destroy(currNota.gameObject);
         }
         else {
-            Debug.Log("errou! " + cor + " " + dist); //nota errada
             hm.wrongTapDamage();
         }
 	}

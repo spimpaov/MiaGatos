@@ -8,14 +8,18 @@ public class HealthManager : MonoBehaviour {
     [SerializeField]
     private Image healthBarL, healthBarR;
     private float healthMax = 100, health = 100;
+    public int passiveDmg;
     [SerializeField]
-    private int passiveDmg, wrongDmg, missDmg, perfHeal, gdHeal;
+    private int wrongDmg, missDmg, perfHeal, gdHeal;
     [SerializeField]
     private Color colorHigh, colorMed, colorLow;
 
+    private SongManager sm;
+    private bool gameisover = false;
+
 	// Use this for initialization
 	void Start () {
-		
+        sm = GameObject.Find("SongManager").GetComponent<SongManager>();
 	}
 	
 	// Update is called once per frame
@@ -29,6 +33,7 @@ public class HealthManager : MonoBehaviour {
     void healthSize() {
         healthBarL.fillAmount = Mathf.Lerp(healthBarL.fillAmount, (float)health / healthMax, .2f);
         healthBarR.fillAmount = Mathf.Lerp(healthBarR.fillAmount, (float)health / healthMax, .2f);
+        if (!gameisover && healthBarL.fillAmount == 0) { gameisover = true; StartCoroutine(sm.gameOver()); }
     }
 
     void healthColor() {
@@ -36,7 +41,7 @@ public class HealthManager : MonoBehaviour {
         else if (healthBarL.fillAmount >= .2f) { healthBarL.color = colorMed; healthBarR.color = colorMed; }
         else { healthBarL.color = colorLow; healthBarR.color = colorLow; }
     }
-    
+
     public void wrongTapDamage() {
         if (health > wrongDmg) health -= wrongDmg;
         else health = 0;

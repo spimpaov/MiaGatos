@@ -4,6 +4,14 @@ using UnityEngine;
 
 public class SongManager : MonoBehaviour {
 
+    enum musica {
+        SONGOFTIME,
+        INFINITE
+    }
+
+    [SerializeField]
+    private musica song;
+
     private GameObject notaLinha;
     [SerializeField]
     private GameObject notaB, notaW, notaY;
@@ -15,17 +23,68 @@ public class SongManager : MonoBehaviour {
     public List<Nota> NotasBrancas;
     public List<Nota> NotasAmarelas;
 
+    [SerializeField]
+    private GameObject gameOverBalloon, victoryBalloon;
 
     void Start () {
         notaLinha = GameObject.Find("HUD-Linha");
         notaPos = GameObject.Find("NotaPos").GetComponent<RectTransform>();
-        StartCoroutine(spawnNotas());
+
+        if (song == musica.INFINITE) StartCoroutine(infiniteSong());
+        else if (song == musica.SONGOFTIME) StartCoroutine(songOfTime());
     }
 
-    IEnumerator spawnNotas() {
+    IEnumerator songOfTime()
+    {
+        spawnNota(Cor.WHITE);
+        yield return new WaitForSeconds(.7f);
+        spawnNota(Cor.BLACK);
+        yield return new WaitForSeconds(1f);
+        spawnNota(Cor.YELLOW);
+        yield return new WaitForSeconds(.55f);
+        spawnNota(Cor.WHITE);
+        yield return new WaitForSeconds(.55f);
+        spawnNota(Cor.BLACK);
+        yield return new WaitForSeconds(1f);
+        spawnNota(Cor.YELLOW);
+        yield return new WaitForSeconds(.55f);
+        spawnNota(Cor.WHITE);
+        yield return new WaitForSeconds(.3f);
+        spawnNota(Cor.YELLOW);
+        yield return new WaitForSeconds(.3f);
+        spawnNota(Cor.WHITE);
+        yield return new WaitForSeconds(.7f);
+        spawnNota(Cor.BLACK);
+        yield return new WaitForSeconds(.7f);
+        spawnNota(Cor.YELLOW);
+        yield return new WaitForSeconds(.3f);
+        spawnNota(Cor.BLACK);
+        yield return new WaitForSeconds(.3f);
+        spawnNota(Cor.WHITE);
+        yield return new WaitForSeconds(.6f);
+        spawnNota(Cor.YELLOW);
+        yield return new WaitForSeconds(.6f);
+        spawnNota(Cor.BLACK);
+        yield return new WaitForSeconds(.4f);
+        spawnNota(Cor.WHITE);
+        yield return new WaitForSeconds(.4f);
+        spawnNota(Cor.BLACK);
+
+
+        while (NotasAmarelas.Count > 0 || NotasBrancas.Count > 0 || NotasPretas.Count > 0)
+        {
+            NotasPretas.RemoveAll(item => item == null);
+            NotasBrancas.RemoveAll(item => item == null);
+            NotasAmarelas.RemoveAll(item => item == null);
+            yield return new WaitForSeconds(.3f);
+        }
+        StartCoroutine(victory());
+    }
+
+    IEnumerator infiniteSong() {
         while (true) {
-            spawnNota((Cor) Random.Range(0, 3));
-            yield return new WaitForSeconds(Random.Range(.5f,2f));
+            spawnNota((Cor)Random.Range(0, 3));
+            yield return new WaitForSeconds(Random.Range(.5f, 1.5f));
         }
     }
 
@@ -48,5 +107,34 @@ public class SongManager : MonoBehaviour {
         else if (c == Cor.YELLOW) NotasAmarelas.Add(n);
 
         count++;
+    }
+
+    public IEnumerator gameOver() {
+        StopAllCoroutines();
+        foreach (Nota n in NotasAmarelas)
+        {
+            if (n != null) n.rb.velocity = Vector2.zero;
+        }
+        foreach (Nota n in NotasPretas)
+        {
+            if (n != null) n.rb.velocity = Vector2.zero;
+        }
+        foreach (Nota n in NotasBrancas)
+        {
+            if (n != null) n.rb.velocity = Vector2.zero;
+        }
+
+        gameOverBalloon.SetActive(true);
+        yield return new WaitForSeconds(1.5f);
+        GameObject.Find("InterScene").GetComponent<InterScene>().LoadScene("GameOverMenu");
+    }
+
+    IEnumerator victory()
+    {
+        //StopAllCoroutines();
+        victoryBalloon.SetActive(true);
+        GameObject.Find("HealthManager").GetComponent<HealthManager>().passiveDmg = 0;
+        yield return new WaitForSeconds(1.5f);
+        GameObject.Find("InterScene").GetComponent<InterScene>().LoadScene("GameOverMenu");
     }
 }

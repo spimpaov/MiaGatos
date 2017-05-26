@@ -10,7 +10,7 @@ public class IACat : MonoBehaviour {
     
 	public float walkVelocity;
 	public float runVelocity;
-    //public Cor cor;
+    public Cor cor;
 
     private GameObject brinquedo;
     private GameObject poteDeComida;

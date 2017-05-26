@@ -112,7 +112,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cor: 0
-  speed: 5
+  speed: 4
+  rb: {fileID: 0}
   rect: {fileID: 0}
 --- !u!114 &114386886121505662
 MonoBehaviour:

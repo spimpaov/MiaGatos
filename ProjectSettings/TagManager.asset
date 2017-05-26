@@ -9,6 +9,10 @@ TagManager:
   - PoteDeComida
   - Brinquedo
   - HitFrame
+  - SoundManager
+  - TapManager
+  - MissPopUp
+  - ScoreManager
   layers:
   - Default
   - TransparentFX

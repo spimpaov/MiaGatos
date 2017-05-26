@@ -12,6 +12,8 @@ public class SongManager : MonoBehaviour {
     [SerializeField]
     private musica song;
 
+    private ScoreManager score;
+
     private GameObject notaLinha;
     [SerializeField]
     private GameObject notaB, notaW, notaY;
@@ -32,6 +34,9 @@ public class SongManager : MonoBehaviour {
 
         if (song == musica.INFINITE) StartCoroutine(infiniteSong());
         else if (song == musica.SONGOFTIME) StartCoroutine(songOfTime());
+
+        score = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManager>();
+
     }
 
     IEnumerator songOfTime()

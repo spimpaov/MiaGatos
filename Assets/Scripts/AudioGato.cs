@@ -19,13 +19,31 @@ public class AudioGato : MonoBehaviour
     }
 
 
-    public void setSoundCerto()
+    public void setSoundCerto(Cor c)
     {
-        audioSource.PlayOneShot(miado_amarelo_sucesso);
+        switch (c)
+        {
+            case Cor.BLACK:
+                audioSource.pitch = .7f;
+                audioSource.PlayOneShot(miado_preto_sucesso);
+                break;
+            case Cor.YELLOW:
+                audioSource.pitch = 1f;
+                audioSource.PlayOneShot(miado_amarelo_sucesso);
+                break;
+            case Cor.WHITE:
+                audioSource.pitch = 1.3f;
+                audioSource.PlayOneShot(miado_cinza_sucesso);
+                break;
+            default:
+                break;
+        }
+
     }
 
     public void setSoundErrado()
     {
+        audioSource.pitch = 1f;
         audioSource.PlayOneShot(miado_falha);
     }
 

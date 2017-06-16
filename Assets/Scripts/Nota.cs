@@ -8,7 +8,8 @@ public enum Cor
     BLACK, WHITE, YELLOW
 }
 
-public class Nota : MonoBehaviour {
+public class Nota : MonoBehaviour
+{
     public Cor cor;
     private GameObject aux;
     private AudioGato audioGato;
@@ -56,9 +57,10 @@ public class Nota : MonoBehaviour {
         // preciso saber quando o sprite inteiro está depois da tela, mas so sei a posicao do meio dele
         Debug.DrawLine(new Vector3(aux.transform.position.x + 100, aux.transform.position.y + 200, 0),
                         new Vector3(aux.transform.position.x + 100, aux.transform.position.y - 200, 0), Color.red);
-        if (gameObject != null && rect.position.x > (hitFramePos +130)) {
+        if (gameObject != null && rect.position.x > (hitFramePos + 130))
+        {
             GameObject.Find("HealthManager").GetComponent<HealthManager>().missNoteDamage();
-            audioGato.setSoundErrado();
+            //audioGato.setSoundErrado();
             StartCoroutine(tap.POPUP(2));
             Destroy(gameObject);
         }

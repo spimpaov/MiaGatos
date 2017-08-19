@@ -1,4 +1,6 @@
 # MiaGatos
-Projeto de uma semana e alguns dias com dois integrantes programadores da GDP.
+Projeto de duas semanas com dois integrantes programadores da GDP.
 Jogo de ritmo com gatos que miam.
-Vai ser um SU-CES-SO!
+Membros responsáveis:
+ - Silvia Pimpão Vasquez
+ - Júlio Rama Krsna Mandoju
